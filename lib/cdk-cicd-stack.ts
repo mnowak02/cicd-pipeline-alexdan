@@ -13,6 +13,8 @@ export class CdkCicdStack extends cdk.Stack {
       synth: new ShellStep('Synth',{
         input: CodePipelineSource.gitHub('mnowak02/cicd-pipeline-alexdan','cicd-practice1'),
         commands: [
+          'pwd',
+          'ls -al',
           'npm ci',
           'npx cdk synth',
           'ls -al'
@@ -22,7 +24,7 @@ export class CdkCicdStack extends cdk.Stack {
     });
 
     const testStage = pipeline.addStage(new PipelineStage(this, 'PipelineTestStage',{
-      stageName = 'stagename-test'
+      stageName: 'stagename-test'
     }))
 
 
